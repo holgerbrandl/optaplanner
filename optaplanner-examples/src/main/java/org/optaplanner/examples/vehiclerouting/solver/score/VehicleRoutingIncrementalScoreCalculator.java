@@ -166,7 +166,7 @@ public class VehicleRoutingIncrementalScoreCalculator extends AbstractIncrementa
             vehicleDemandMap.put(vehicle, newDemand);
             if (customer.getNextCustomer() == null) {
                 // Score constraint distanceFromLastCustomerToDepot
-                softScore -= customer.getLocation().getDistanceTo(vehicle.getLocation());
+                softScore -= customer.getLocation().getDistanceTo(vehicle.getDepot().getLocation());
             }
         }
     }
@@ -182,7 +182,7 @@ public class VehicleRoutingIncrementalScoreCalculator extends AbstractIncrementa
             vehicleDemandMap.put(vehicle, newDemand);
             if (customer.getNextCustomer() == null) {
                 // Score constraint distanceFromLastCustomerToDepot
-                softScore += customer.getLocation().getDistanceTo(vehicle.getLocation());
+                softScore += customer.getLocation().getDistanceTo(vehicle.getDepot().getLocation());
             }
         }
     }
@@ -192,7 +192,7 @@ public class VehicleRoutingIncrementalScoreCalculator extends AbstractIncrementa
         if (vehicle != null) {
             if (customer.getNextCustomer() == null) {
                 // Score constraint distanceFromLastCustomerToDepot
-                softScore -= customer.getLocation().getDistanceTo(vehicle.getLocation());
+                softScore -= customer.getLocation().getDistanceTo(vehicle.getDepot().getLocation());
             }
         }
     }
@@ -202,7 +202,7 @@ public class VehicleRoutingIncrementalScoreCalculator extends AbstractIncrementa
         if (vehicle != null) {
             if (customer.getNextCustomer() == null) {
                 // Score constraint distanceFromLastCustomerToDepot
-                softScore += customer.getLocation().getDistanceTo(vehicle.getLocation());
+                softScore += customer.getLocation().getDistanceTo(vehicle.getDepot().getLocation());
             }
         }
     }

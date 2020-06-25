@@ -26,17 +26,14 @@ import org.optaplanner.examples.vehiclerouting.domain.timewindowed.TimeWindowedD
 @XStreamInclude({
         TimeWindowedDepot.class
 })
-public class Depot extends AbstractPersistable {
+public class Depot extends AbstractStandStill {
 
-    protected Location location;
+    //    @Override
+//    public Vehicle getVehicle() {
+//        return this;
+//    }
 
-    public Location getLocation() {
-        return location;
-    }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     // ************************************************************************
     // Complex methods

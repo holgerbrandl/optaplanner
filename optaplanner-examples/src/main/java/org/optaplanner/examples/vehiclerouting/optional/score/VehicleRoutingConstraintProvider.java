@@ -66,7 +66,7 @@ public class VehicleRoutingConstraintProvider implements ConstraintProvider {
                 .filter(customer -> customer.getNextCustomer() == null)
                 .penalizeLong("distanceFromLastCustomerToDepot",
                         HardSoftLongScore.ONE_SOFT,
-                        customer -> customer.getDistanceTo(customer.getVehicle()));
+                        customer -> customer.getDistanceTo(customer.getVehicle().getDepot()));
     }
 
     // ************************************************************************

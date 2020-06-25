@@ -51,7 +51,7 @@ public class VehicleRoutingEasyScoreCalculator implements EasyScoreCalculator<Ve
                 softScore -= customer.getDistanceFromPreviousStandstill();
                 if (customer.getNextCustomer() == null) {
                     // Score constraint distanceFromLastCustomerToDepot
-                    softScore -= customer.getLocation().getDistanceTo(vehicle.getLocation());
+                    softScore -= customer.getLocation().getDistanceTo(vehicle.getDepot().getLocation());
                 }
                 if (timeWindowed) {
                     TimeWindowedCustomer timeWindowedCustomer = (TimeWindowedCustomer) customer;

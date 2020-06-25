@@ -16,8 +16,6 @@
 
 package org.optaplanner.examples.vehiclerouting.domain.timewindowed.solver;
 
-import java.util.Objects;
-
 import org.optaplanner.core.impl.domain.variable.listener.VariableListener;
 import org.optaplanner.core.impl.score.director.ScoreDirector;
 import org.optaplanner.examples.vehiclerouting.domain.Customer;
@@ -25,6 +23,8 @@ import org.optaplanner.examples.vehiclerouting.domain.Standstill;
 import org.optaplanner.examples.vehiclerouting.domain.Vehicle;
 import org.optaplanner.examples.vehiclerouting.domain.timewindowed.TimeWindowedCustomer;
 import org.optaplanner.examples.vehiclerouting.domain.timewindowed.TimeWindowedDepot;
+
+import java.util.Objects;
 
 // TODO When this class is added only for TimeWindowedCustomer, use TimeWindowedCustomer instead of Customer
 public class ArrivalTimeUpdatingVariableListener implements VariableListener<Customer> {
@@ -65,10 +65,16 @@ public class ArrivalTimeUpdatingVariableListener implements VariableListener<Cus
 
     protected void updateArrivalTime(ScoreDirector scoreDirector, TimeWindowedCustomer sourceCustomer) {
         Standstill previousStandstill = sourceCustomer.getPreviousStandstill();
-        Long departureTime = previousStandstill == null ? null
-                : (previousStandstill instanceof TimeWindowedCustomer)
-                ? ((TimeWindowedCustomer) previousStandstill).getDepartureTime()
-                : ((TimeWindowedDepot) ((Vehicle) previousStandstill).getDepot()).getReadyTime();
+        Long departureTime;
+
+        if (previousStandstill == null) {
+            departureTime = null;
+        } else if (previousStandstill instanceof TimeWindowedCustomer) {
+            departureTime = ((TimeWindowedCustomer) previousStandstill).getDepartureTime();
+        } else {
+            departureTime = ((TimeWindowedDepot) previousStandstill).getReadyTime();
+        }
+
         TimeWindowedCustomer shadowCustomer = sourceCustomer;
         Long arrivalTime = calculateArrivalTime(shadowCustomer, departureTime);
         while (shadowCustomer != null && !Objects.equals(shadowCustomer.getArrivalTime(), arrivalTime)) {

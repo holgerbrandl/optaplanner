@@ -32,26 +32,15 @@ import org.optaplanner.examples.vehiclerouting.domain.timewindowed.TimeWindowedC
 @XStreamInclude({
         TimeWindowedCustomer.class
 })
-public class Customer extends AbstractPersistable implements Standstill {
+public class Customer extends AbstractStandStill {
 
-    protected Location location;
     protected int demand;
 
     // Planning variables: changes during planning, between score calculations.
     protected Standstill previousStandstill;
 
-    // Shadow variables
-    protected Customer nextCustomer;
     protected Vehicle vehicle;
 
-    @Override
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public int getDemand() {
         return demand;
@@ -61,7 +50,7 @@ public class Customer extends AbstractPersistable implements Standstill {
         this.demand = demand;
     }
 
-    @PlanningVariable(valueRangeProviderRefs = {"vehicleRange", "customerRange"},
+    @PlanningVariable(valueRangeProviderRefs = {"depotRange", "customerRange"},
             graphType = PlanningVariableGraphType.CHAINED)
     public Standstill getPreviousStandstill() {
         return previousStandstill;
@@ -71,18 +60,9 @@ public class Customer extends AbstractPersistable implements Standstill {
         this.previousStandstill = previousStandstill;
     }
 
-    @Override
-    public Customer getNextCustomer() {
-        return nextCustomer;
-    }
 
-    @Override
-    public void setNextCustomer(Customer nextCustomer) {
-        this.nextCustomer = nextCustomer;
-    }
-
-    @Override
-    @AnchorShadowVariable(sourceVariableName = "previousStandstill")
+//    @Override
+//    @AnchorShadowVariable(sourceVariableName = "previousStandstill")
     public Vehicle getVehicle() {
         return vehicle;
     }

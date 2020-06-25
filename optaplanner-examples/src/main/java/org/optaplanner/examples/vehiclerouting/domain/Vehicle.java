@@ -21,13 +21,13 @@ import org.optaplanner.examples.common.domain.AbstractPersistable;
 import org.optaplanner.examples.vehiclerouting.domain.location.Location;
 
 @XStreamAlias("VrpVehicle")
-public class Vehicle extends AbstractPersistable implements Standstill {
+public class Vehicle extends AbstractPersistable{
 
     protected int capacity;
     protected Depot depot;
 
     // Shadow variables
-    protected Customer nextCustomer;
+//    protected Customer nextCustomer;
 
     public int getCapacity() {
         return capacity;
@@ -44,30 +44,30 @@ public class Vehicle extends AbstractPersistable implements Standstill {
     public void setDepot(Depot depot) {
         this.depot = depot;
     }
-
-    @Override
-    public Customer getNextCustomer() {
-        return nextCustomer;
-    }
-
-    @Override
-    public void setNextCustomer(Customer nextCustomer) {
-        this.nextCustomer = nextCustomer;
-    }
+//
+//    @Override
+//    public Customer getNextCustomer() {
+//        return nextCustomer;
+//    }
+//
+//    @Override
+//    public void setNextCustomer(Customer nextCustomer) {
+//        this.nextCustomer = nextCustomer;
+//    }
 
     // ************************************************************************
     // Complex methods
     // ************************************************************************
 
-    @Override
-    public Vehicle getVehicle() {
-        return this;
-    }
+//    @Override
+//    public Vehicle getVehicle() {
+//        return this;
+//    }
 
-    @Override
-    public Location getLocation() {
-        return depot.getLocation();
-    }
+//    @Override
+//    public Location getLocation() {
+//        return depot.getLocation();
+//    }
 
     /**
      * @param standstill never null
@@ -79,11 +79,12 @@ public class Vehicle extends AbstractPersistable implements Standstill {
 
     @Override
     public String toString() {
-        Location location = getLocation();
-        if (location.getName() == null) {
-            return super.toString();
-        }
-        return location.getName() + "/" + super.toString();
+//        Location location = getLocation();
+//        if (location.getName() == null) {
+//            return super.toString();
+//        }
+//        return location.getName() + "/" + super.toString();
+        return super.toString();
     }
 
 }

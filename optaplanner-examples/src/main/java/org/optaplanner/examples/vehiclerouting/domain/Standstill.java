@@ -28,10 +28,10 @@ public interface Standstill {
      */
     Location getLocation();
 
-    /**
-     * @return sometimes null
-     */
-    Vehicle getVehicle();
+//    /**
+//     * @return sometimes null
+//     */
+//    Vehicle getVehicle();
 
     /**
      * @return sometimes null

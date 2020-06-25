@@ -167,7 +167,7 @@ public class VehicleRoutingSolutionPainter {
                     }
                     // Line back to the vehicle depot
                     if (customer.getNextCustomer() == null) {
-                        Location vehicleLocation = vehicle.getLocation();
+                        Location vehicleLocation = vehicle.getDepot().getLocation();
                         translator.drawRoute(g, location.getLongitude(), location.getLatitude(),
                                 vehicleLocation.getLongitude(), vehicleLocation.getLatitude(),
                                 location instanceof AirLocation, true);

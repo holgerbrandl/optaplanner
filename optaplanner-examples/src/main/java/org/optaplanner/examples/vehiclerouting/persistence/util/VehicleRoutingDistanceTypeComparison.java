@@ -95,24 +95,24 @@ public class VehicleRoutingDistanceTypeComparison extends LoggingMain {
             inputCustomerMap.put(customer.getId(), customer);
         }
 
-        for (Vehicle varVehicle : varSolution.getVehicleList()) {
-            Vehicle inputVehicle = inputVehicleMap.get(varVehicle.getId());
-            Customer varNext = varVehicle.getNextCustomer();
-            inputVehicle.setNextCustomer(varNext == null ? null : inputCustomerMap.get(varNext.getId()));
-        }
-        for (Customer varCustomer : varSolution.getCustomerList()) {
-            Customer inputCustomer = inputCustomerMap.get(varCustomer.getId());
-            Standstill varPrevious = varCustomer.getPreviousStandstill();
-            inputCustomer.setPreviousStandstill(varPrevious == null ? null :
-                    varPrevious instanceof Vehicle ? inputVehicleMap.get(((Vehicle) varPrevious).getId())
-                    : inputCustomerMap.get(((Customer) varPrevious).getId()));
-            Customer varNext = varCustomer.getNextCustomer();
-            inputCustomer.setNextCustomer(varNext == null ? null : inputCustomerMap.get(varNext.getId()));
-        }
-        try (ScoreDirector<VehicleRoutingSolution> scoreDirector = scoreDirectorFactory.buildScoreDirector()) {
-            scoreDirector.setWorkingSolution(inputSolution);
-            scoreDirector.calculateScore();
-        }
+//        for (Vehicle varVehicle : varSolution.getVehicleList()) {
+//            Vehicle inputVehicle = inputVehicleMap.get(varVehicle.getId());
+//            Customer varNext = varVehicle.getNextCustomer();
+//            inputVehicle.setNextCustomer(varNext == null ? null : inputCustomerMap.get(varNext.getId()));
+//        }
+//        for (Customer varCustomer : varSolution.getCustomerList()) {
+//            Customer inputCustomer = inputCustomerMap.get(varCustomer.getId());
+//            Standstill varPrevious = varCustomer.getPreviousStandstill();
+//            inputCustomer.setPreviousStandstill(varPrevious == null ? null :
+//                    varPrevious instanceof Vehicle ? inputVehicleMap.get(((Vehicle) varPrevious).getId())
+//                    : inputCustomerMap.get(((Customer) varPrevious).getId()));
+//            Customer varNext = varCustomer.getNextCustomer();
+//            inputCustomer.setNextCustomer(varNext == null ? null : inputCustomerMap.get(varNext.getId()));
+//        }
+//        try (ScoreDirector<VehicleRoutingSolution> scoreDirector = scoreDirectorFactory.buildScoreDirector()) {
+//            scoreDirector.setWorkingSolution(inputSolution);
+//            scoreDirector.calculateScore();
+//        }
     }
 
 }
